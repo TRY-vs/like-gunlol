@@ -72,22 +72,24 @@ interface Track {
 }
 
 const SONGS: Track[] = [
-  { title: "Peligrosa", artist: "FloyyMenor", art: "/media/covers/peligrosa.jpg", src: "/media/audio/peligrosa.mp3" }
+  { title: "Struct", artist: "UdieNnx", art: "/media/covers/struct.jpg", src: "/media/audio/struct.mp3" },
+  { title: "Majboor", artist: "Sheheryar Rehan, Zoha Waseem", art: "/media/covers/majboor.jpg", src: "/media/audio/majboor.mp3" },
+  { title: "Her", artist: "Jvke", art: "/media/covers/her.jpg", src: "/media/audio/her.mp3" },
+  { title: "Peligrosa", artist: "FloyyMenor", art: "/media/covers/peligrosa.jpg", src: "/media/audio/peligrosa.mp3" },
+  { title: "Tauba", artist: "Shibu", art: "/media/covers/tauba.jpg", src: "/media/audio/tauba.mp3" },
+  { title: "Parano", artist: "Frozy", art: "/media/covers/parano.jpg", src: "/media/audio/parano.mp3" }
 ];
 
 const BADGES = [
   { id: "owner", label: "Owner", icon: "fa-solid fa-crown", color: "#ffd700" },
-  { id: "flame", label: "Flame", icon: "fa-solid fa-fire", color: "#ff9f43" },
-  { id: "anime", label: "Anime", icon: "fa-solid fa-tv", color: "#ff6b9d" },
-  { id: "music", label: "Music", icon: "fa-brands fa-soundcloud", color: "#ff5500" },
   { id: "verified", label: "Verified", icon: "fa-solid fa-circle-check", color: "#3498db" },
   { id: "code", label: "Coder", icon: "fa-solid fa-code", color: "#2ecc71" }
 ];
 
 const SOCIAL_LINKS = [
   { href: "https://github.com/TRY-vs", icon: "fa-brands fa-github", label: "GitHub" },
-  { href: "https://discord.gg/ZMhJwk3FrU", icon: "fa-brands fa-discord", label: "Discord", useInvite: true },
-  { href: "https://www.instagram.com/wtv_mazen?stkn=MTRweXU4ZXdtd25uaw==", icon: "fa-brands fa-instagram", label: "Instagram" },
+  { href: "https://discord.gg/NqKTxrm2VV", icon: "fa-brands fa-discord", label: "Discord", useInvite: true },
+  { href: "https://www.instagram.com/wtv_mazen", icon: "fa-brands fa-instagram", label: "Instagram" },
 ];
 
 const TYPEWRITER_MESSAGES = [
@@ -258,7 +260,7 @@ export default function App() {
   const currentTrack = SONGS[currentTrackIndex];
   const typewriterText = useTypewriter(TYPEWRITER_MESSAGES);
 
-  const discordUserId = import.meta.env.VITE_DISCORD_USER_ID || "1369034152552300545";
+  const discordUserId = import.meta.env.VITE_DISCORD_USER_ID || "1186206505658220597";
   const discordGuildId = import.meta.env.VITE_DISCORD_GUILD_ID || "";
 
   useEffect(() => {
@@ -541,12 +543,12 @@ export default function App() {
 
       {}
       <div className="bg" aria-hidden="true">
-        <img className="bg-media bg-fill" src="https://i.ibb.co/gDq8v9J/bg.jpg" alt="" draggable="false" />
+        <img className="bg-media bg-fill" src="/media/background/bg.jpg" alt="" draggable="false" />
         {entered && (
           <video 
             className="bg-media bg-video animate-fade-in" 
-            src="/media/background/car_background.mp4" 
-            poster="https://i.ibb.co/gDq8v9J/bg.jpg" 
+            src="/media/background/car.mp4" 
+            poster="/media/background/bg.jpg" 
             autoPlay 
             muted 
             loop 
@@ -577,8 +579,8 @@ export default function App() {
               <img 
                 className="avatar" 
                 src={discordUser?.avatar 
-                  ? `https://cdn.discordapp.com/avatars/${discordUserId}/${discordUser.avatar}.png?size=256` 
-                  : "https://cdn.discordapp.com/embed/avatars/0.png"
+                  ? `https://cdn.discordapp.com/avatars/${discordUserId}/${discordUser.avatar}.png` 
+                  : "https://i.ibb.co.com/v4dhZpv8/Dark.jpg"
                 } 
                 alt="Profile Avatar"
                 referrerPolicy="no-referrer"
@@ -673,8 +675,8 @@ export default function App() {
               <img 
                 className="guild-icon" 
                 src={guildData.icon 
-                  ? `https://cdn.discordapp.com/icons/${guildData.id}/${guildData.icon}.png?size=128` 
-                  : "https://cdn.discordapp.com/embed/avatars/0.png"
+                  ? `https://cdn.discordapp.com/icons/${guildData.id}/${guildData.icon}.png` 
+                  : "https://i.ibb.co.com/v4dhZpv8/Dark.jpg"
                 } 
                 alt={guildData.name} 
                 draggable="false"
