@@ -88,7 +88,7 @@ const BADGES = [
 
 const SOCIAL_LINKS = [
   { href: "https://github.com/TRY-vs", icon: "fa-brands fa-github", label: "GitHub" },
-  { href: "https://discord.gg/NqKTxrm2VV", icon: "fa-brands fa-discord", label: "Discord", useInvite: true },
+  { href: "https://discord.gg/7AKdhnCJWh", icon: "fa-brands fa-discord", label: "Discord", useInvite: true },
   { href: "https://www.instagram.com/wtv_mazen", icon: "fa-brands fa-instagram", label: "Instagram" },
 ];
 
@@ -306,7 +306,7 @@ export default function App() {
   const fetchDiscord = useCallback(() => {
     const userQuery = `?id=${encodeURIComponent(discordUserId)}`;
     
-    fetch(`/api/discord${userQuery}`)
+    fetch(`/api/discord${userQuery}`, { cache: "no-store" })
       .then((res) => res.json())
       .then((data) => {
         setDiscordUser(data);
@@ -315,7 +315,7 @@ export default function App() {
       })
       .finally(() => setLoadingDiscord(false));
 
-    fetch(`/api/discord/presence${userQuery}`)
+    fetch(`/api/discord/presence${userQuery}`, { cache: "no-store" })
       .then((res) => res.json())
       .then((data) => {
         setPresence(data);
@@ -323,7 +323,7 @@ export default function App() {
       .catch(() => {});
 
     if (discordGuildId) {
-      fetch(`/api/discord/guild?id=${encodeURIComponent(discordGuildId)}`)
+      fetch(`/api/discord/guild?id=${encodeURIComponent(discordGuildId)}`, { cache: "no-store" })
         .then((res) => res.json())
         .then((data) => {
           if (!data.error) {
