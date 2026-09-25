@@ -260,7 +260,7 @@ export default function App() {
   const currentTrack = SONGS[currentTrackIndex];
   const typewriterText = useTypewriter(TYPEWRITER_MESSAGES);
 
-  const discordUserId = import.meta.env.VITE_DISCORD_USER_ID || "1186206505658220597";
+  const discordUserId = import.meta.env.VITE_DISCORD_USER_ID || "1369034152552300545";
   const discordGuildId = import.meta.env.VITE_DISCORD_GUILD_ID || "";
 
   useEffect(() => {
@@ -409,7 +409,7 @@ export default function App() {
     setIsPlaying(true);
   };
 
-  const currentStatus = presence?.status || "offline";
+  const currentStatus = presence?.status || "Do Not Disturb";
   const statusLabels = {
     online: "Online",
     idle: "Idle",
@@ -625,7 +625,7 @@ export default function App() {
 
           {}
           <p className="handle">
-            <span>@{discordUser?.username || "0itzdark"}</span>
+            <span>@{discordUser?.username || "drk5."}</span>
             <span className={`status-text ${statusColors[currentStatus]}`}>
               {currentStatus !== "offline" && <i className="live-dot" />}
               {statusLabels[currentStatus]}
@@ -667,7 +667,7 @@ export default function App() {
           {}
           {guildData && (
             <a 
-              href={guildData.instant_invite || "https://discord.gg/NqKTxrm2VV"} 
+              href={guildData.instant_invite || "https://discord.gg/7AKdhnCJWh"} 
               target="_blank" 
               rel="noopener noreferrer" 
               className="guild"

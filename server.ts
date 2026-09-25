@@ -35,7 +35,7 @@ const STAGING_URL = "https://profile.renime.top";
 
 const STATIC_DISCORD_FALLBACK = {
   id: "1186206505658220597",
-  username: "0itzdark",
+  username: "drk5.",
   global_name: "Dark",
   discriminator: "0",
   avatar: "5b78b6d180f47a8c98a75d75c2960884",
