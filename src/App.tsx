@@ -264,6 +264,19 @@ export default function App() {
   const discordGuildId = import.meta.env.VITE_DISCORD_GUILD_ID || "";
 
   useEffect(() => {
+    const goatCounterCode = import.meta.env.VITE_GOATCOUNTER_CODE;
+    if (!goatCounterCode || document.querySelector('script[data-goatcounter]')) {
+      return;
+    }
+
+    const script = document.createElement("script");
+    script.async = true;
+    script.dataset.goatcounter = `https://${goatCounterCode}.goatcounter.com/count`;
+    script.src = "https://gc.zgo.at/count.js";
+    document.head.appendChild(script);
+  }, []);
+
+  useEffect(() => {
     let counted = false;
     try {
       counted = sessionStorage.getItem("pv_hit") === "1";

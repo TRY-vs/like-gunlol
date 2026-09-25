@@ -1,3 +1,4 @@
+import "dotenv/config";
 import express from "express";
 import path from "path";
 import fs from "fs";
@@ -39,9 +40,10 @@ function saveViewsCount(count: number) {
 }
 
 const STAGING_URL = "https://profile.renime.top";
+const DEFAULT_DISCORD_ID = process.env.VITE_DISCORD_USER_ID || "1369034152552300545";
 
 const STATIC_DISCORD_FALLBACK = {
-  id: "1186206505658220597",
+  id: DEFAULT_DISCORD_ID,
   username: "drk5.",
   global_name: "Dark",
   discriminator: "0",
@@ -82,10 +84,11 @@ app.post("/api/views", (req, res) => {
 });
 
 app.get("/api/discord", async (req, res) => {
-  const userId = req.query.id || "1186206505658220597";
+  const userId = String(req.query.id ?? process.env.VITE_DISCORD_USER_ID ?? DEFAULT_DISCORD_ID);
   try {
-    const response = await fetch(`${STAGING_URL}/api/discord?id=${userId}`, {
-      headers: { "User-Agent": "Mozilla/5.0" }
+    const response = await fetch(`${STAGING_URL}/api/discord?id=${encodeURIComponent(userId)}`, {
+      headers: { "User-Agent": "Mozilla/5.0" },
+      cache: "no-store"
     });
     if (response.ok) {
       const data = await response.json();
@@ -94,14 +97,15 @@ app.get("/api/discord", async (req, res) => {
   } catch (error) {
     console.warn("Failed to proxy /api/discord, falling back to cache:", error);
   }
-  res.json(STATIC_DISCORD_FALLBACK);
+  res.json({ ...STATIC_DISCORD_FALLBACK, id: userId });
 });
 
 app.get("/api/discord/presence", async (req, res) => {
-  const userId = req.query.id || "1186206505658220597";
+  const userId = String(req.query.id ?? process.env.VITE_DISCORD_USER_ID ?? DEFAULT_DISCORD_ID);
   try {
-    const response = await fetch(`${STAGING_URL}/api/discord/presence?id=${userId}`, {
-      headers: { "User-Agent": "Mozilla/5.0" }
+    const response = await fetch(`${STAGING_URL}/api/discord/presence?id=${encodeURIComponent(userId)}`, {
+      headers: { "User-Agent": "Mozilla/5.0" },
+      cache: "no-store"
     });
     if (response.ok) {
       const data = await response.json();
@@ -110,7 +114,7 @@ app.get("/api/discord/presence", async (req, res) => {
   } catch (error) {
     console.warn("Failed to proxy /api/discord/presence, falling back to cache:", error);
   }
-  res.json(STATIC_PRESENCE_FALLBACK);
+  res.json({ ...STATIC_PRESENCE_FALLBACK, last_seen: new Date().toISOString() });
 });
 
 app.get("/api/discord/guild", async (req, res) => {
